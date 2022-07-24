@@ -1,0 +1,47 @@
+{
+    "sliders": [
+        {
+            "title": "UX",
+            "name": "Furniture Collection",
+            "heading": "Synnes Dining Chair Upholstered",
+            "images": [
+                { "src": "/img/slider/shape3.png" },
+                { "src": "/img/slider/shape4.png" }
+            ],
+            "shapIcon": "/img/slider/shape-icon.png",
+            "bgImage": "/img/slider/slide1-1.jpg",
+            "shopLink": true,
+            "categoryLink": true
+        },
+        {
+            "title": "UX",
+            "name": "Furniture Collection",
+            "heading": "Synnes Dining Chair Upholstered",
+            "images": [
+                { "src": "/img/slider/shape1.png" },
+                { "src": "/img/slider/shape2.png" }
+            ],
+            "shapIcon": "/img/slider/shape-icon.png",
+            "bgImage": "/img/slider/slide1.jpg",
+            "shopLink": true,
+            "categoryLink": true
+        }
+    ],
+    "announcement": [
+        "/img/banner/banner-1/banner1.jpg",
+        "/img/banner/banner-1/banner2.jpg",
+        "/img/banner/banner-1/banner3.jpg"
+    ],
+    "upcomingProduct": {
+        "img": "/img/bg/bg.jpg",
+        "map": ["Lodge Flush Mount", "Lodge Flush Mount", "Lodge Flush Mount"]
+    },
+    "imageSlider": [
+        "/img/instagram/insta1.jpg",
+        "/img/instagram/insta2.jpg",
+        "/img/instagram/insta3.jpg",
+        "/img/instagram/insta4.jpg",
+        "/img/instagram/insta5.jpg",
+        "/img/instagram/insta6.jpg"
+    ]
+}
