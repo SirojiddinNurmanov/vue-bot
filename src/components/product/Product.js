@@ -53,7 +53,6 @@ const Product = ({
             }
         }
     };
-    console.log("product pass to product");
 
     const onClickCart = (e) => {
         e.preventDefault();
@@ -74,9 +73,7 @@ const Product = ({
             toast.success("Add item in wishlist.");
         }
     };
-    // const cart = document.querySelector(".s-cart");
-    // const calc = document.querySelector(".s-calc");
-    // const count = document.querySelector(".s-count");
+
     const showCalc = () => {
         setIsActive(true);
     };
@@ -89,15 +86,9 @@ const Product = ({
     };
     return (
         <div
-            className={`product-wrapper mb-50 ${wrapperPadding0 ? "p-0" : ""}`}
+            className={`product-wrapper mb-20 ${wrapperPadding0 ? "p-0" : ""}`}
         >
-            {/* <ProductModal
-                show={quickView}
-                handleClose={() => setQuickView(false)}
-                product={product}
-            /> */}
-
-            <div className="product-img mb-25">
+            <div className="product-img">
                 <Link href={`/shop/${product.product_id}`}>
                     <a>
                         <img src={product.product_images[0]} alt="img 1" />
@@ -108,42 +99,6 @@ const Product = ({
                         />
                     </a>
                 </Link>
-
-                <div className="product-action text-center">
-                    <a
-                        href="#"
-                        onClick={(e) => onClickCart(e)}
-                        title="Shoppingb Cart"
-                    >
-                        <i className="flaticon-shopping-cart" />
-                    </a>
-                    <a
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setQuickView(true);
-                        }}
-                        title="Quick View"
-                    >
-                        <i className="flaticon-eye" />
-                    </a>
-                    <a
-                        href="#"
-                        onClick={(e) => onClickCompare(e)}
-                        data-toggle="tooltip"
-                        data-placement="right"
-                        title="Compare"
-                        className={
-                            compares.find(
-                                (compare) => compare.id === product.product_id
-                            )
-                                ? "active"
-                                : ""
-                        }
-                    >
-                        <i className="flaticon-compare" />
-                    </a>
-                </div>
                 <div className="sale-tag">
                     {product.status_new && <span className="new">new</span>}
                     {product.status_sale && <span className="sale">sale</span>}
@@ -153,8 +108,7 @@ const Product = ({
                 </span>
             </div>
             <div className="product-content">
-                <div className="pro-cat mb-10">
-                    {/* <Link href={`/shop/${product.product_id}`}>s-mart, </Link> */}
+                <div className="pro-cat">
                     <Link href={`/shop/${product.product_id}`}>
                         {product.brand_name}
                     </Link>
@@ -166,30 +120,9 @@ const Product = ({
                 </h4>
                 <div className="product-meta">
                     <div className="pro-price">
-                        <span>{`$${Number(product.product_price).toFixed(
-                            2
-                        )} USD`}</span>
-                        {/* {product.price && (
-                            <span className="old-price">
-                                {`$${Number(product.price).toFixed(2)} USD`}
-                            </span>
-                        )} */}
+                        <span>{`${Number(product.product_price)}so'm `}</span>
                     </div>
                 </div>
-                {/* <div className="product-wishlist">
-                    <a
-                        href="#"
-                        onClick={(e) => onClickWishlist(e)}
-                        className={` ${
-                            wishlist &&
-                            wishlist.find((pro) => pro.id === product.id)
-                                ? "active"
-                                : ""
-                        } `}
-                    >
-                        <i className="far fa-heart" title="Wishlist" />
-                    </a>
-                </div> */}
             </div>
             <div
                 className={isActive ? "s-cart collapse" : "s-cart"}

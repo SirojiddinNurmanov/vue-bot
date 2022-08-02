@@ -24,6 +24,7 @@ const Shop = ({
         getProducts();
     }, []);
 
+    console.log(products && "shop filter", products);
     return (
         <Layout footerBg container textCenter sticky>
             <main>
@@ -33,136 +34,30 @@ const Shop = ({
                             {!leftSideBar && (
                                 <Filter setActive_={() => setActive(0)} />
                             )}
-                            {/* {leftSideBar && (
-                                <Filter setActive_={() => setActive(0)} />
-                            )} */}
                             <div className="col-xl-8 col-lg-8">
-                                {/* <TabContainer
-                                    defaultActiveKey={
-                                        defultActive ? defultActive : "grid"
-                                    }
-                                >
-                                    <div className="row">
-                                        <div className="col-xl-5 col-lg-5 col-md-6">
-                                            <div className="product-showing mb-40">
-                                                <p>
-                                                    {activeData(
-                                                        active,
-                                                        sort,
-                                                        products
-                                                    )}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="col-xl-7 col-lg-7 col-md-6">
-                                            <div className="shop-tab f-right">
-                                                <Nav
-                                                    as="ul"
-                                                    className="nav text-center"
-                                                    id="myTab"
-                                                    role="tablist"
-                                                >
-                                                    <Nav.Item as="li">
-                                                        <Nav.Link
-                                                            as="a"
-                                                            href="#"
-                                                            onClick={(e) =>
-                                                                e.preventDefault()
-                                                            }
-                                                            eventKey="list"
-                                                        >
-                                                            <i className="fas fa-list-ul" />{" "}
-                                                        </Nav.Link>
-                                                    </Nav.Item>
-                                                    <Nav.Item as="li">
-                                                        <Nav.Link
-                                                            as="a"
-                                                            href="#"
-                                                            onClick={(e) =>
-                                                                e.preventDefault()
-                                                            }
-                                                            eventKey="grid"
-                                                        >
-                                                            <i className="fas fa-th-large" />
-                                                        </Nav.Link>
-                                                    </Nav.Item>
-                                                </Nav>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <TabContent>
-                                        <TabPane eventKey="grid">
-                                            <div className="row">
-                                                {products &&
-                                                products.length > 0 ? (
-                                                    products.map(
-                                                        (product, i) => (
-                                                            <div
-                                                                className={`${col} ${dblock(
-                                                                    active,
-                                                                    i,
-                                                                    sort
-                                                                )}`}
-                                                                key={product.id}
-                                                            >
-                                                                <Product
-                                                                    wrapperPadding0={
-                                                                        true
-                                                                    }
-                                                                    product={
-                                                                        product
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        )
-                                                    )
-                                                ) : (
-                                                    <h2 className="text-center d-block w-100 mt-5">
-                                                        No Product Found
-                                                    </h2>
-                                                )}
-                                            </div>
-                                        </TabPane>
-                                        <TabPane eventKey="list">
-                                            {products &&
-                                                products.map((product, i) => (
-                                                    <div
-                                                        key={i}
-                                                        className={`${dblock(
-                                                            active,
-                                                            i,
-                                                            sort
-                                                        )}`}
-                                                    >
-                                                        <ProductListView
-                                                            product={product}
-                                                            col5={true}
-                                                        />
-                                                    </div>
-                                                ))}
-                                        </TabPane>
-                                    </TabContent>
-                                </TabContainer> */}
                                 <div className="row">
-                                    {products && products.length > 0 ? (
-                                        products.map((product, i) => (
-                                            <div
-                                                className={`col-4 ${
-                                                    (active, i, sort)
-                                                }`}
-                                                key={product.id}
-                                            >
-                                                <Product
-                                                    wrapperPadding0={true}
-                                                    product={product}
-                                                />
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <h2 className="text-center d-block w-100 mt-5">
-                                            No Product Found
-                                        </h2>
-                                    )}
+                                    {
+                                        products &&
+                                            products.length > 0 &&
+                                            products.map((product, i) => (
+                                                <div
+                                                    className={`col-4 ${
+                                                        (active, i, sort)
+                                                    }`}
+                                                    key={product.id}
+                                                >
+                                                    <Product
+                                                        wrapperPadding0={true}
+                                                        product={product}
+                                                    />
+                                                </div>
+                                            ))
+                                        // ) : (
+                                        //     <h2 className="text-center d-block w-100 mt-5">
+                                        //         No Product Found
+                                        //     </h2>
+                                        // )
+                                    }
                                 </div>
                                 <Paggination
                                     active={active}

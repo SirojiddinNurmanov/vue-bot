@@ -25,11 +25,14 @@ var external_react_hot_toast_ = __webpack_require__(6533);
 var external_react_hot_toast_default = /*#__PURE__*/__webpack_require__.n(external_react_hot_toast_);
 // EXTERNAL MODULE: ./src/utils/utils.js
 var utils = __webpack_require__(9164);
-// EXTERNAL MODULE: ./node_modules/next/dist/client/image.js
-var client_image = __webpack_require__(9917);
+// EXTERNAL MODULE: ./apiContext/index.js
+var apiContext = __webpack_require__(1850);
+// EXTERNAL MODULE: external "react-bootstrap"
+var external_react_bootstrap_ = __webpack_require__(9226);
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(5282);
 ;// CONCATENATED MODULE: ./src/layouts/CompareIcon.js
+
 
 
 
@@ -47,7 +50,28 @@ const CompareIcon = ({
   (0,external_react_.useEffect)(() => {
     getCarts();
   }, []);
-  const carts = (0,external_react_redux_.useSelector)(state => state.utilis.carts);
+  const {
+    carts,
+    getAllCarts
+  } = (0,apiContext/* useCarts */.v)();
+
+  const deleteCart = async cart_id => {
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJ1c2VyX3JvbGUiOiJ1c2VyIiwiaWF0IjoxNjU5NDI3ODg1LCJleHAiOjE2NTk1MTQyODV9.XV2tQwBFkaJ5cJAe_-sndTAo3Ab_ez-VdqnZIpmUy6o`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        cart_id
+      })
+    };
+    await fetch("http://api.saadia.uz/api/carts", requestOptions).then(response => response.json()).then(data => {
+      console.log(data);
+      getAllCarts();
+    });
+  };
+
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
     className: "wishlist-container compare",
     children: [/*#__PURE__*/jsx_runtime_.jsx("div", {
@@ -56,8 +80,9 @@ const CompareIcon = ({
       className: "d-shop-cart",
       children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("a", {
         className: "icon",
-        children: [/*#__PURE__*/jsx_runtime_.jsx("i", {
-          className: `flaticon-shopping-cart`
+        children: [/*#__PURE__*/jsx_runtime_.jsx("img", {
+          src: "/img/icon/carts.png",
+          alt: ""
         }), /*#__PURE__*/jsx_runtime_.jsx("span", {
           className: "cart-count-shop",
           children: carts && carts.length
@@ -71,7 +96,7 @@ const CompareIcon = ({
               href: `/shop/${cart.id}`,
               children: /*#__PURE__*/jsx_runtime_.jsx("a", {
                 children: /*#__PURE__*/jsx_runtime_.jsx("img", {
-                  src: cart.img1,
+                  src: cart.product_images[0],
                   alt: "Cart"
                 })
               })
@@ -80,18 +105,15 @@ const CompareIcon = ({
             className: "cart-content",
             children: [/*#__PURE__*/jsx_runtime_.jsx("h3", {
               children: /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-                href: `/shop/${cart.id}`,
-                children: cart.name
+                href: `/shop/${cart.product_id}`,
+                children: cart.product_name
               })
-            }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
+            }), /*#__PURE__*/jsx_runtime_.jsx("div", {
               className: "cart-price",
-              children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("span", {
+              children: /*#__PURE__*/jsx_runtime_.jsx("span", {
                 className: "new",
-                children: ["$", cart.mainPrice, " * ", cart.qty]
-              }), " =", /*#__PURE__*/(0,jsx_runtime_.jsxs)("span", {
-                className: "new ml-1 ",
-                children: ["$", cart.totalPrice]
-              })]
+                children: cart.product_price
+              })
             })]
           }), /*#__PURE__*/jsx_runtime_.jsx("div", {
             className: "del-icon",
@@ -99,7 +121,7 @@ const CompareIcon = ({
               href: "#",
               onClick: e => {
                 e.preventDefault();
-                removeCart(cart.id);
+                deleteCart(cart.cart_id);
                 external_react_hot_toast_default().error("Remove item from carts");
               },
               children: /*#__PURE__*/jsx_runtime_.jsx("i", {
@@ -108,16 +130,16 @@ const CompareIcon = ({
             })
           })]
         }, cart.id)) : /*#__PURE__*/jsx_runtime_.jsx("h3", {
-          children: "Product Not Found"
+          children: "Product Not Founded"
         }), /*#__PURE__*/jsx_runtime_.jsx("li", {
           children: /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
             className: "total-price",
             children: [/*#__PURE__*/jsx_runtime_.jsx("span", {
               className: "f-left",
               children: "Total:"
-            }), carts && /*#__PURE__*/(0,jsx_runtime_.jsxs)("span", {
+            }), carts && /*#__PURE__*/jsx_runtime_.jsx("span", {
               className: "f-right",
-              children: ["$", (0,utils/* totalPrice */.X_)(carts)]
+              children: (0,utils/* totalPrice */.X_)(carts)
             })]
           })
         }), /*#__PURE__*/jsx_runtime_.jsx("li", {
@@ -441,6 +463,8 @@ const Footer = ({
 };
 
 /* harmony default export */ const layouts_Footer = ((/* unused pure expression or super */ null && (Footer)));
+// EXTERNAL MODULE: ./node_modules/next/dist/client/image.js
+var client_image = __webpack_require__(9917);
 ;// CONCATENATED MODULE: ./src/layouts/header/Catagory.js
 // import Image from "next/image";
 
@@ -1258,14 +1282,15 @@ const SearchTrigger_SearchTrigger = ({
 
 
 
+
 const ShopCart_ShopCart = ({
   removeCart,
   getCarts
 }) => {
-  (0,external_react_.useEffect)(() => {
-    getCarts();
-  }, []);
-  const carts = (0,external_react_redux_.useSelector)(state => state.utilis.carts);
+  const {
+    carts
+  } = (0,apiContext/* useCarts */.v)();
+  console.log("shopping carts came");
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)("li", {
     className: "d-shop-cart",
     children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("a", {
@@ -1283,10 +1308,10 @@ const ShopCart_ShopCart = ({
         children: [/*#__PURE__*/jsx_runtime_.jsx("div", {
           className: "cart-img",
           children: /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-            href: `/shop/${cart.id}`,
+            href: `/shop/${cart.cart_id}`,
             children: /*#__PURE__*/jsx_runtime_.jsx("a", {
               children: /*#__PURE__*/jsx_runtime_.jsx("img", {
-                src: cart.img1,
+                src: cart.product_images[0],
                 alt: "Cart"
               })
             })
@@ -1295,34 +1320,34 @@ const ShopCart_ShopCart = ({
           className: "cart-content",
           children: [/*#__PURE__*/jsx_runtime_.jsx("h3", {
             children: /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-              href: `/shop/${cart.id}`,
-              children: cart.name
+              href: `/shop/${cart.cart_id}`,
+              children: cart.product_name
             })
           }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
             className: "cart-price",
             children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("span", {
               className: "new",
-              children: ["$", cart.mainPrice, " * ", cart.qty]
+              children: ["$", cart.product_price]
             }), " =", /*#__PURE__*/(0,jsx_runtime_.jsxs)("span", {
               className: "new ml-1 ",
-              children: ["$", cart.totalPrice]
+              children: ["$", cart.product_price]
             })]
           })]
         }), /*#__PURE__*/jsx_runtime_.jsx("div", {
           className: "del-icon",
           children: /*#__PURE__*/jsx_runtime_.jsx("a", {
-            href: "#",
-            onClick: e => {
-              e.preventDefault();
-              removeCart(cart.id);
-              external_react_hot_toast_default().error("Remove item from carts");
-            },
+            href: "#" // onClick={(e) => {
+            //     e.preventDefault();
+            //     removeCart(cart.id);
+            //     toast.error("Remove item from carts");
+            // }}
+            ,
             children: /*#__PURE__*/jsx_runtime_.jsx("i", {
               className: "far fa-trash-alt"
             })
           })
         })]
-      }, cart.id)) : /*#__PURE__*/jsx_runtime_.jsx("h3", {
+      }, cart.cart_id)) : /*#__PURE__*/jsx_runtime_.jsx("h3", {
         children: "Product Not Found"
       }), /*#__PURE__*/jsx_runtime_.jsx("li", {
         children: /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
@@ -1974,22 +1999,22 @@ const Layout = ({
           })]
         })
       })
-    }), /*#__PURE__*/jsx_runtime_.jsx("div", {
-      className: "fixed-search-btn",
-      children: /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-        href: "/shop",
+    }), /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
+      href: "/shop",
+      children: /*#__PURE__*/jsx_runtime_.jsx("div", {
+        className: "search-btn",
         children: /*#__PURE__*/jsx_runtime_.jsx("img", {
           src: "/img/icon/search.png",
-          alt: "img"
+          alt: "search"
         })
       })
-    }), /*#__PURE__*/jsx_runtime_.jsx("div", {
-      className: "fixed-back",
-      children: /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-        href: "/",
+    }), /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
+      href: "/",
+      children: /*#__PURE__*/jsx_runtime_.jsx("div", {
+        className: "back-btn",
         children: /*#__PURE__*/jsx_runtime_.jsx("img", {
-          src: "../img/icon/back.png",
-          alt: "alt"
+          src: "/img/icon/back.png",
+          alt: "search"
         })
       })
     })]
@@ -2081,9 +2106,9 @@ const filterByTags = value => dispatch => {
 /* harmony export */   "sA": () => (/* binding */ getWishlist),
 /* harmony export */   "_$": () => (/* binding */ getCompare),
 /* harmony export */   "qu": () => (/* binding */ compare),
-/* harmony export */   "JY": () => (/* binding */ removeCompare),
-/* harmony export */   "$P": () => (/* binding */ setCheckoutData)
+/* harmony export */   "JY": () => (/* binding */ removeCompare)
 /* harmony export */ });
+/* unused harmony export setCheckoutData */
 /* harmony import */ var _utils_localstorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3970);
 /* harmony import */ var _type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1885);
 
@@ -2091,13 +2116,13 @@ const filterByTags = value => dispatch => {
 const getCarts = () => dispatch => {
   dispatch({
     type: _type__WEBPACK_IMPORTED_MODULE_0__/* .GET_CARTS */ .Rp,
-    payload: (0,_utils_localstorage__WEBPACK_IMPORTED_MODULE_1__/* .getLocalStorage */ .$)("vue-ecommerce")
+    payload: (0,_utils_localstorage__WEBPACK_IMPORTED_MODULE_1__/* .setLocalStorage */ .q)("s-cart")
   });
 };
 const addToCart = product => dispatch => {
   dispatch({
     type: _type__WEBPACK_IMPORTED_MODULE_0__/* .ADD_TO_CART */ .G2,
-    payload: product
+    payload: (0,_utils_localstorage__WEBPACK_IMPORTED_MODULE_1__/* .setLocalStorage */ .q)(`s-cart`, product)
   });
 };
 const removeCart = id => dispatch => {
@@ -2144,8 +2169,21 @@ const removeCompare = product => dispatch => {
 };
 const setCheckoutData = data => dispatch => {
   dispatch({
-    type: _type__WEBPACK_IMPORTED_MODULE_0__/* .CHECKOUT_USER */ .WX,
+    type: CHECKOUT_USER,
     payload: data
+  });
+};
+
+const getCart = async () => {
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImlhdCI6MTY1ODg1NDI3MCwiZXhwIjoxNjU4OTQwNjcwfQ.n0gGhhZUEB2KuN30jgw3P-rKg5AnGRmNBye5W61RhTA`
+    }
+  };
+  await fetch("http://api.saadia.uz/api/carts", requestOptions).then(response => response.json()).then(data => {
+    console.log("dispatch cart work", data);
+    return data === null || data === void 0 ? void 0 : data.data;
   });
 };
 

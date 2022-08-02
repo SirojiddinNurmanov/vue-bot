@@ -1,36 +1,22 @@
 {
     "sliders": [
         {
-            "title": "UX",
-            "name": "Furniture Collection",
-            "heading": "Synnes Dining Chair Upholstered",
-            "images": [
-                { "src": "/img/slider/shape3.png" },
-                { "src": "/img/slider/shape4.png" }
-            ],
-            "shapIcon": "/img/slider/shape-icon.png",
-            "bgImage": "/img/slider/slide1-1.jpg",
-            "shopLink": true,
-            "categoryLink": true
+            "src": "/img/banner/banner-1/banner.png",
+            "name": "Saadia Online Market"
         },
         {
-            "title": "UX",
-            "name": "Furniture Collection",
-            "heading": "Synnes Dining Chair Upholstered",
-            "images": [
-                { "src": "/img/slider/shape1.png" },
-                { "src": "/img/slider/shape2.png" }
-            ],
-            "shapIcon": "/img/slider/shape-icon.png",
-            "bgImage": "/img/slider/slide1.jpg",
-            "shopLink": true,
-            "categoryLink": true
+            "src": "/img/banner/banner-1/banner.png",
+            "name": "Saadia Online Market"
+        },
+        {
+            "src": "/img/banner/banner-1/banner.png",
+            "name": "Saadia Online Market"
         }
     ],
     "announcement": [
-        "/img/banner/banner-1/banner1.jpg",
-        "/img/banner/banner-1/banner2.jpg",
-        "/img/banner/banner-1/banner3.jpg"
+        "/img/banner/banner-1/banner1.png",
+        "/img/banner/banner-1/banner2.png",
+        "/img/banner/banner-1/banner3.png"
     ],
     "upcomingProduct": {
         "img": "/img/bg/bg.jpg",

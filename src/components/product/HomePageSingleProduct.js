@@ -6,18 +6,17 @@ import Product from "./Product";
 
 const HomePageSingleProduct = ({ products, bot }) => {
     return (
-        <section className="product-area box-90 pt-45 pb-40 slick-slider">
+        <section className="product-area box-90 pt-45 pb-30 slick-slider">
             <div className="container-fluid">
                 <TabContainer defaultActiveKey="all2">
                     <div className="row">
                         <div className="col-xl-5 col-lg-12">
-                            <div className="area-title mb-50">
-                                <h2>Best Sell Products</h2>
-                                <p>Browse the huge variety of our products</p>
+                            <div className="area-title mb-20">
+                                <h1>Qaynoq mahsulotlar</h1>
                             </div>
                         </div>
                         <div className="col-xl-7 col-lg-12">
-                            <div className="product-tab mb-40">
+                            <div className="product-tab mb-10">
                                 <Nav
                                     as="ul"
                                     className="nav product-nav  justify-content-xl-end"
@@ -37,7 +36,7 @@ const HomePageSingleProduct = ({ products, bot }) => {
                                             aria-controls="home"
                                             aria-selected="true"
                                         >
-                                            all
+                                            Barchasi
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item as="li">
@@ -53,7 +52,7 @@ const HomePageSingleProduct = ({ products, bot }) => {
                                             aria-controls="profile"
                                             aria-selected="false"
                                         >
-                                            furniture
+                                            Smartfonlar
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item as="li">
@@ -69,7 +68,7 @@ const HomePageSingleProduct = ({ products, bot }) => {
                                             aria-controls="contact"
                                             aria-selected="false"
                                         >
-                                            Man cloth
+                                            Aksesuarlar
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item as="li">
@@ -85,7 +84,7 @@ const HomePageSingleProduct = ({ products, bot }) => {
                                             aria-controls="contact"
                                             aria-selected="false"
                                         >
-                                            woman cloth
+                                            tikuv mashinalari
                                         </Nav.Link>
                                     </Nav.Item>
                                 </Nav>

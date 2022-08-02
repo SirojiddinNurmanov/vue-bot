@@ -85,8 +85,6 @@ const Product = ({
     }
   };
 
-  console.log("product pass to product");
-
   const onClickCart = e => {
     e.preventDefault();
     addToCart(product);
@@ -105,10 +103,7 @@ const Product = ({
     } else {
       react_hot_toast__WEBPACK_IMPORTED_MODULE_2__.toast.success("Add item in wishlist.");
     }
-  }; // const cart = document.querySelector(".s-cart");
-  // const calc = document.querySelector(".s-calc");
-  // const count = document.querySelector(".s-count");
-
+  };
 
   const showCalc = () => {
     setIsActive(true);
@@ -128,9 +123,9 @@ const Product = ({
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-    className: `product-wrapper mb-50 ${wrapperPadding0 ? "p-0" : ""}`,
+    className: `product-wrapper mb-20 ${wrapperPadding0 ? "p-0" : ""}`,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: "product-img mb-25",
+      className: "product-img",
       children: [/*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx(next_link__WEBPACK_IMPORTED_MODULE_0__.default, {
         href: `/shop/${product.product_id}`,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("a", {
@@ -143,36 +138,6 @@ const Product = ({
             alt: "imge 2"
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "product-action text-center",
-        children: [/*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("a", {
-          href: "#",
-          onClick: e => onClickCart(e),
-          title: "Shoppingb Cart",
-          children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("i", {
-            className: "flaticon-shopping-cart"
-          })
-        }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("a", {
-          href: "#",
-          onClick: e => {
-            e.preventDefault();
-            setQuickView(true);
-          },
-          title: "Quick View",
-          children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("i", {
-            className: "flaticon-eye"
-          })
-        }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("a", {
-          href: "#",
-          onClick: e => onClickCompare(e),
-          "data-toggle": "tooltip",
-          "data-placement": "right",
-          title: "Compare",
-          className: compares.find(compare => compare.id === product.product_id) ? "active" : "",
-          children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("i", {
-            className: "flaticon-compare"
-          })
-        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "sale-tag",
         children: [product.status_new && /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("span", {
@@ -189,7 +154,7 @@ const Product = ({
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "product-content",
       children: [/*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("div", {
-        className: "pro-cat mb-10",
+        className: "pro-cat",
         children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx(next_link__WEBPACK_IMPORTED_MODULE_0__.default, {
           href: `/shop/${product.product_id}`,
           children: product.brand_name
@@ -204,7 +169,7 @@ const Product = ({
         children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("div", {
           className: "pro-price",
           children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx("span", {
-            children: `$${Number(product.product_price).toFixed(2)} USD`
+            children: `${Number(product.product_price)}so'm `
           })
         })
       })]
@@ -421,11 +386,12 @@ const ProductModal = ({
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                       className: "cart-plus-minus",
                       children: [/*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx("p", {
-                        children: cart ? cart.qty : 1
+                        children: "cart.qty"
                       }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx("div", {
                         className: "dec qtybutton",
                         onClick: () => {
-                          cart && cart.qty !== 1 && decreaseCart(cart);
+                          cart && // cart.qty !== 1 &&
+                          decreaseCart(cart);
                         },
                         children: "-"
                       }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx("div", {
@@ -505,31 +471,11 @@ const getProducts = () => async dispatch => {
   });
 };
 const getSingleProduct = id => async dispatch => {
-  const data = await (0,_utils_fatchData__WEBPACK_IMPORTED_MODULE_1__/* .fatchData */ .A)("http://api.saadia.uz/api/products");
+  const data = await (0,_utils_fatchData__WEBPACK_IMPORTED_MODULE_1__/* .fatchData */ .A)(`http://api.saadia.uz/api/products/${id}`);
   dispatch({
     type: _type__WEBPACK_IMPORTED_MODULE_0__/* .GET_SINGLE */ .Ug,
-    payload: data.find(data => data.id === id)
+    payload: data === null || data === void 0 ? void 0 : data.data
   });
-};
-
-/***/ }),
-
-/***/ 5764:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "A": () => (/* binding */ fatchData)
-/* harmony export */ });
-const fatchData = async url => {
-  try {
-    const response = await fetch(`${url}`);
-    const data = await response.json();
-    return url === "http://api.saadia.uz/api/products" ? data === null || data === void 0 ? void 0 : data.data : data;
-  } catch (err) {
-    return err.message;
-  } // const res = await fetch(`${url}`);
-  // const data = await res.json();
-
 };
 
 /***/ })

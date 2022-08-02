@@ -8,9 +8,9 @@ export const getProducts = () => async (dispatch) => {
     });
 };
 export const getSingleProduct = (id) => async (dispatch) => {
-    const data = await fatchData("http://api.saadia.uz/api/products");
+    const data = await fatchData(`http://api.saadia.uz/api/products/${id}`);
     dispatch({
         type: GET_SINGLE,
-        payload: data.find((data) => data.id === id),
+        payload: data?.data,
     });
 };

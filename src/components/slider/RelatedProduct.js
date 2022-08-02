@@ -39,8 +39,7 @@ const RelatedProduct = ({ children }) => {
                 <div className="row">
                     <div className="col-xl-12">
                         <div className="area-title text-center mb-50">
-                            <h2>Releted Products</h2>
-                            <p>Browse the huge variety of our products</p>
+                            <h2>O`xshash mahsulotlar</h2>
                         </div>
                     </div>
                 </div>

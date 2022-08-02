@@ -330,6 +330,7 @@ const Shop = ({
   (0,external_react_.useEffect)(() => {
     getProducts();
   }, []);
+  console.log(products && "shop filter", products);
   return /*#__PURE__*/jsx_runtime_.jsx(Layout/* default */.Z, {
     footerBg: true,
     container: true,
@@ -348,16 +349,18 @@ const Shop = ({
               className: "col-xl-8 col-lg-8",
               children: [/*#__PURE__*/jsx_runtime_.jsx("div", {
                 className: "row",
-                children: products && products.length > 0 ? products.map((product, i) => /*#__PURE__*/jsx_runtime_.jsx("div", {
+                children: products && products.length > 0 && products.map((product, i) => /*#__PURE__*/jsx_runtime_.jsx("div", {
                   className: `col-4 ${(active, i, sort)}`,
                   children: /*#__PURE__*/jsx_runtime_.jsx(Product/* default */.Z, {
                     wrapperPadding0: true,
                     product: product
                   })
-                }, product.id)) : /*#__PURE__*/jsx_runtime_.jsx("h2", {
-                  className: "text-center d-block w-100 mt-5",
-                  children: "No Product Found"
-                })
+                }, product.id)) // ) : (
+                //     <h2 className="text-center d-block w-100 mt-5">
+                //         No Product Found
+                //     </h2>
+                // )
+
               }), /*#__PURE__*/jsx_runtime_.jsx(Paggination/* default */.Z, {
                 active: active,
                 setActive: setActive,

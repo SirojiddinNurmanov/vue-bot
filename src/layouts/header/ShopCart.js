@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { connect, useSelector } from "react-redux";
 import { getCarts, removeCart } from "../../redux/action/utilis";
 import { totalPrice } from "../../utils/utils";
-const ShopCart = ({ removeCart, getCarts }) => {
-    useEffect(() => {
-        getCarts();
-    }, []);
-    const carts = useSelector((state) => state.utilis.carts);
+import { useCarts } from "../../../apiContext";
 
+const ShopCart = ({ removeCart, getCarts }) => {
+    const { carts } = useCarts();
+    console.log("shopping carts came");
     return (
         <li className="d-shop-cart">
             <a href="#" onClick={(e) => e.preventDefault()}>
@@ -19,38 +18,42 @@ const ShopCart = ({ removeCart, getCarts }) => {
             <ul className="minicart">
                 {carts && carts.length > 0 ? (
                     carts.map((cart) => (
-                        <li key={cart.id}>
+                        <li key={cart.cart_id}>
                             <div className="cart-img">
-                                <Link href={`/shop/${cart.id}`}>
+                                <Link href={`/shop/${cart.cart_id}`}>
                                     <a>
-                                        <img src={cart.img1} alt="Cart" />
+                                        <img
+                                            src={cart.product_images[0]}
+                                            alt="Cart"
+                                        />
                                     </a>
                                 </Link>
                             </div>
                             <div className="cart-content">
                                 <h3>
-                                    <Link href={`/shop/${cart.id}`}>
-                                        {cart.name}
+                                    <Link href={`/shop/${cart.cart_id}`}>
+                                        {cart.product_name}
                                     </Link>
                                 </h3>
                                 <div className="cart-price">
                                     <span className="new">
-                                        ${cart.mainPrice} * {cart.qty}
+                                        ${cart.product_price}
+                                        {/* * {cart.qty} */}
                                     </span>
                                     {" ="}
                                     <span className="new ml-1 ">
-                                        ${cart.totalPrice}
+                                        ${cart.product_price}
                                     </span>
                                 </div>
                             </div>
                             <div className="del-icon">
                                 <a
                                     href="#"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        removeCart(cart.id);
-                                        toast.error("Remove item from carts");
-                                    }}
+                                    // onClick={(e) => {
+                                    //     e.preventDefault();
+                                    //     removeCart(cart.id);
+                                    //     toast.error("Remove item from carts");
+                                    // }}
                                 >
                                     <i className="far fa-trash-alt" />
                                 </a>

@@ -57,18 +57,16 @@ const Layout = ({
                     </form>
                 </div>
             </div>
-
-            <div className="fixed-search-btn">
-                <Link href="/shop">
-                    <img src="/img/icon/search.png" alt="img" />
-                </Link>
-            </div>
-
-            <div className="fixed-back">
-                <Link href="/">
-                    <img src="../img/icon/back.png" alt="alt" />
-                </Link>
-            </div>
+            <Link href="/shop">
+                <div className="search-btn">
+                    <img src="/img/icon/search.png" alt="search" />
+                </div>
+            </Link>
+            <Link href="/">
+                <div className="back-btn">
+                    <img src="/img/icon/back.png" alt="search" />
+                </div>
+            </Link>
         </Fragment>
     );
 };

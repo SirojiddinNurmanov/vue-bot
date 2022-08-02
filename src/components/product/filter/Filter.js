@@ -76,29 +76,28 @@ const Filter = ({
                     arr={brand}
                     funtion={filterByBrand}
                     setActive_={setActive_}
-                /> */}
-                {/* <PriceFilter
+                />
+                <PriceFilter
                     filterByPrice={filterByPrice}
                     setActive_={setActive_}
-                /> */}
-                {/* <FilterByCheckBox
+                />
+                <FilterByCheckBox
                     title="Product Size"
                     arr={size}
                     funtion={filterBySize}
                     setActive_={setActive_}
-                /> */}
-                {/* <FilterByCheckBox
+                />
+                <FilterByCheckBox
                     title="Catergories"
                     arr={category}
                     funtion={filterByCatagory}
                     setActive_={setActive_}
-                /> */}
-
-                {/* <FilterByTags
+                />
+                <FilterByTags
                     filterByTags={filterByTags}
                     setActive_={setActive_}
-                /> */}
-                {/* <ColorFilter
+                />
+                <ColorFilter
                     filterByColor={filterByColor}
                     setActive_={setActive_}
                 /> */}
@@ -113,10 +112,13 @@ const Filter = ({
                                         <li key={product.id}>
                                             <div className="side-pro-img">
                                                 <Link
-                                                    href={`/shop/${product.id}`}
+                                                    href={`/shop/${product.product_id}`}
                                                 >
                                                     <img
-                                                        src={product.img2}
+                                                        src={
+                                                            product
+                                                                .product_images[0]
+                                                        }
                                                         alt="Product"
                                                     />
                                                 </Link>
@@ -131,18 +133,17 @@ const Filter = ({
                                                 </div>
                                                 <h5>
                                                     <Link
-                                                        href={`/shop/${product.id}`}
+                                                        href={`/shop/${product.product_id}`}
                                                     >
-                                                        {product.name}
+                                                        {product.product_name}
                                                     </Link>
                                                 </h5>
                                                 <div className="side-pro-price">
                                                     <span>
                                                         $
                                                         {Number(
-                                                            product.mainPrice
-                                                        ).toFixed(2)}{" "}
-                                                        USD
+                                                            product.product_price
+                                                        )}
                                                     </span>
                                                 </div>
                                             </div>

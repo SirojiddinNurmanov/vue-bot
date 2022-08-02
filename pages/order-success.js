@@ -102,9 +102,10 @@ const OrderSuccess = ({ getCarts }) => {
 
                                                             <td className="product-price">
                                                                 <span className="amount">
-                                                                    {Number(
+                                                                    {/* {Number(
                                                                         cart.qty
-                                                                    )}
+                                                                    )} */}
+                                                                    cart.qty
                                                                 </span>
                                                             </td>
 

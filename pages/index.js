@@ -15,7 +15,7 @@ import { getTopSeller } from "../src/redux/action/seller";
 import { getUpcomingProduct } from "../src/redux/action/upcomingProduct";
 import { filterBlog } from "../src/utils/filterBlog";
 import { getDiscount } from "../src/utils/utils";
-import { useSelector } from "react-redux";
+import { useCarts } from "../apiContext";
 
 const Index = ({
     getHome1,
@@ -38,12 +38,7 @@ const Index = ({
         getUpcomingProduct();
         getProducts();
     }, []);
-    const wishlist = useSelector((state) => state.utilis.wishlist);
-    const carts = useSelector((state) => state.utilis.carts);
-
-    console.log("wishlist", wishlist);
-    console.log("object", carts);
-    console.log("product", products);
+    console.log(products);
     return (
         <Layout sticky={true}>
             <main>
@@ -55,60 +50,21 @@ const Index = ({
                                     <div
                                         key={i}
                                         className=" single-slider slide-1-style slider-1-1 slide-height d-flex align-items-center"
-                                        data-background={slide.bgImage}
                                     >
-                                        {/* <div
-                                            className="shape-title wow bounce-animate"
-                                            style={{ zIndex: "unset" }}
-                                        >
-                                            <h2>{slide.title}</h2>
-                                        </div> */}
-
-                                        {/* <div className="shape-icon bounce-animate">
-                                            <img  src={slide.shapIcon} alt="" />
-                                        </div> */}
                                         <div className="container-fluid">
                                             <div className="row">
-                                                <div className="col-xl-7">
+                                                <div className="col-12">
                                                     <div className="slide-content">
                                                         <span
                                                             className="wow fadeInRight"
                                                             data-delay=".2s"
                                                         >
-                                                            {slide.name}
+                                                            <img
+                                                                src={slide.src}
+                                                                alt=""
+                                                            />
                                                         </span>
-                                                        <h1
-                                                            data-animation="fadeInUp"
-                                                            data-delay=".5s"
-                                                        >
-                                                            {slide.heading}
-                                                        </h1>
                                                     </div>
-                                                </div>
-                                                <div className="col-xl-5">
-                                                    {slide.images &&
-                                                        slide.images.map(
-                                                            (img, j) => (
-                                                                <div
-                                                                    className={`slide-shape${
-                                                                        j + 1
-                                                                    } wow bounceInRight`}
-                                                                    data-delay={
-                                                                        j === 0
-                                                                            ? ".9s"
-                                                                            : "1.2s"
-                                                                    }
-                                                                    key={j}
-                                                                >
-                                                                    <img
-                                                                        src={
-                                                                            img.src
-                                                                        }
-                                                                        alt=""
-                                                                    />
-                                                                </div>
-                                                            )
-                                                        )}
                                                 </div>
                                             </div>
                                         </div>
@@ -120,160 +76,40 @@ const Index = ({
                 <section className="banner-area pt-30 pl-15 pr-15">
                     <div className="container-fluid">
                         <div className="row">
-                            {home1 &&
-                                home1.announcement.map((announcement, i) => (
-                                    <div className="col-4" key={i}>
-                                        <div className="banner mb-30">
-                                            <Link href="/shop">
-                                                <a>
-                                                    <img
-                                                        src={announcement}
-                                                        alt="announcement"
-                                                    />
-                                                </a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                ))}
+                            <h1>Turkumlar</h1>
+                            <div className="row">
+                                {home1 &&
+                                    home1.announcement.map(
+                                        (announcement, i) => (
+                                            <div className="col-4" key={i}>
+                                                <div className="banner mb-30">
+                                                    <Link href="/shop">
+                                                        <a>
+                                                            <img
+                                                                src={
+                                                                    announcement
+                                                                }
+                                                                alt="announcement"
+                                                            />
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        )
+                                    )}
+                            </div>
                         </div>
                     </div>
                 </section>
                 <HomePageProducts products={products} />
-                {/* {topSeller && (
-                    <section className="top-seller-area box-90">
-                        <div className="container-fluid">
-                            <div className="row">
-                                <div className="col-xl-5 col-lg-8 col-md-7">
-                                    <div className="area-title mb-50">
-                                        <h2>Top Sellers</h2>
-                                        <p>
-                                            Browse the huge variety of our
-                                            products
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-xl-7 col-lg-4 col-md-5">
-                                    <div className="vue-btn text-left text-md-right mb-50">
-                                        <Link href="/shop">
-                                            <a className="btn theme-btn">
-                                                Collection
-                                            </a>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-xl-5 col-lg-5">
-                                    <div className="top-seller mb-50">
-                                        <img 
-                                            src={topSeller[0].topProduct.img}
-                                            alt="Product"
-                                        />
-                                        <div className="seller-box text-center">
-                                            <div className="top-seller-content text-left">
-                                                <h2>
-                                                    <Link href="/shop">
-                                                        <a>
-                                                            {
-                                                                topSeller[0]
-                                                                    .topProduct
-                                                                    .name
-                                                            }
-                                                        </a>
-                                                    </Link>
-                                                </h2>
-                                                <div className="pro-price mb-25">
-                                                    <span>
-                                                        $
-                                                        {getDiscount(
-                                                            topSeller[0]
-                                                                .topProduct
-                                                                .price,
-                                                            topSeller[0]
-                                                                .topProduct
-                                                                .discount
-                                                        )}{" "}
-                                                        USD
-                                                    </span>
-                                                    <span className="old-price">
-                                                        $
-                                                        {
-                                                            topSeller[0]
-                                                                .topProduct
-                                                                .price
-                                                        }{" "}
-                                                        USD
-                                                    </span>
-                                                </div>
-                                                <div className="top-seller-btn">
-                                                    <Link href="/shop">
-                                                        <a className="btn theme-btn">
-                                                            Shop Now
-                                                        </a>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xl-7 col-lg-7">
-                                    <div className="top-seller text-right mb-50">
-                                        <img 
-                                            src={topSeller[0].banner}
-                                            alt="topseller"
-                                        />
-                                        <div className="sellet-2-content">
-                                            <h2>
-                                                <Link href="/shop">
-                                                    {topSeller[0].name}
-                                                </Link>
-                                            </h2>
-                                            <div className="pro-price mb-25">
-                                                <span>
-                                                    ${" "}
-                                                    {getDiscount(
-                                                        topSeller[0].topProduct
-                                                            .price,
-                                                        topSeller[0].topProduct
-                                                            .discount
-                                                    )}{" "}
-                                                    USD
-                                                </span>
-                                                <span className="old-price">
-                                                    $
-                                                    {
-                                                        topSeller[0].topProduct
-                                                            .price
-                                                    }{" "}
-                                                    USD
-                                                </span>
-                                            </div>
-                                            <div className="top-seller-btn">
-                                                <Link href="/shop">
-                                                    <a className="btn theme-btn-2 mr-20">
-                                                        view details
-                                                    </a>
-                                                </Link>
-                                                <a
-                                                    href="#"
-                                                    className="shop-btn"
-                                                >
-                                                    <i className="flaticon-shopping-cart" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                )} */}
-
-                {/* <HomePageSingleProduct products={products} /> */}
-                {/* <UpcomingProduct upcomingProduct={upcomingProduct} /> */}
-                {/* {blogs && <Blogs blogs={blogs} />}
-                <ImageSlider imageSlider={imageSlider} /> */}
+                <HomePageSingleProduct products={products} />
             </main>
+            <Link href="/register">
+                <a className="btn theme-btn w-100">Register Now</a>
+            </Link>
+            <Link href="/Login">
+                <a className="btn theme-btn w-100">Login</a>
+            </Link>
         </Layout>
     );
 };

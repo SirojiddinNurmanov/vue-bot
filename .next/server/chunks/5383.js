@@ -37,7 +37,7 @@ const ProductListView = ({
   addToCart,
   addWishlist
 }) => {
-  const wishlist = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(state => state.utilis.wishlist);
+  // const wishlist = useSelector((state) => state.utilis.wishlist);
   const {
     0: quickView,
     1: setQuickView

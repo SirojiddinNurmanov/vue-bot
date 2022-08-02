@@ -15,6 +15,7 @@ const Products = ({ getProducts, products }) => {
     useEffect(() => {
         getProducts();
     }, []);
+    console.log("shop now", products);
     return (
         <Layout sticky container footerBg textCenter>
             <main>

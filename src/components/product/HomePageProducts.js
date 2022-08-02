@@ -4,20 +4,18 @@ import MultipleRowsSlider from "../slider/MultipleRowsSlider";
 import Product from "./Product";
 
 const HomePageProducts = ({ products, bot }) => {
-    console.log("Product came");
     return (
-        <section className="product-area box-90 pt-70 pb-40 slick-slider">
+        <section className="product-area box-90 pt-70 pb-10 slick-slider">
             <div className="container-fluid">
                 <TabContainer defaultActiveKey="all">
                     <div className="row">
                         <div className="col-xl-5 col-lg-12">
-                            <div className="area-title mb-50">
-                                <h2>Brand New Products</h2>
-                                <p>Browse the huge variety of our products</p>
+                            <div className="area-title mb-20">
+                                <h1>Yangi Mahsulotlar</h1>
                             </div>
                         </div>
                         <div className="col-xl-7 col-lg-12">
-                            <div className="product-tab mb-40">
+                            <div className="product-tab mb-10">
                                 <Nav
                                     as="ul"
                                     className="nav product-nav  justify-content-xl-end"
@@ -37,7 +35,7 @@ const HomePageProducts = ({ products, bot }) => {
                                             aria-controls="home"
                                             aria-selected="true"
                                         >
-                                            all
+                                            Barchasi
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item as="li">
@@ -53,7 +51,7 @@ const HomePageProducts = ({ products, bot }) => {
                                             aria-controls="profile"
                                             aria-selected="false"
                                         >
-                                            furniture
+                                            Smartfonlar
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item as="li">
@@ -69,7 +67,7 @@ const HomePageProducts = ({ products, bot }) => {
                                             aria-controls="contact"
                                             aria-selected="false"
                                         >
-                                            Man cloth
+                                            Aksesuarlar
                                         </Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item as="li">
@@ -85,7 +83,7 @@ const HomePageProducts = ({ products, bot }) => {
                                             aria-controls="contact"
                                             aria-selected="false"
                                         >
-                                            woman cloth
+                                            Tikuv Mashinalari
                                         </Nav.Link>
                                     </Nav.Item>
                                 </Nav>
@@ -115,12 +113,13 @@ const HomePageProducts = ({ products, bot }) => {
                                             </MultipleRowsSlider>
                                         </div>
                                     </TabPane>
-                                    {/* <TabPane eventKey="furniture">
+                                    <TabPane eventKey="furniture">
                                         <div className="product-slider owl-carousel ">
                                             <MultipleRowsSlider>
                                                 {products &&
+                                                    products.length &&
                                                     simpleProductFilter(
-                                                        "furniture",
+                                                        "SmartPhones",
                                                         products
                                                     ).map((product) => (
                                                         <Product
@@ -137,8 +136,9 @@ const HomePageProducts = ({ products, bot }) => {
                                         <div className="product-slider owl-carousel ">
                                             <MultipleRowsSlider bot={bot}>
                                                 {products &&
+                                                    products.length &&
                                                     simpleProductFilter(
-                                                        "gent",
+                                                        "Accessories",
                                                         products
                                                     ).map((product) => (
                                                         <Product
@@ -155,8 +155,9 @@ const HomePageProducts = ({ products, bot }) => {
                                         <div className="product-slider owl-carousel ">
                                             <MultipleRowsSlider>
                                                 {products &&
+                                                    products.length &&
                                                     simpleProductFilter(
-                                                        "ladies",
+                                                        "Sewing Machine",
                                                         products
                                                     ).map((product) => (
                                                         <Product
@@ -168,7 +169,7 @@ const HomePageProducts = ({ products, bot }) => {
                                                     ))}
                                             </MultipleRowsSlider>
                                         </div>
-                                    </TabPane> */}
+                                    </TabPane>
                                 </TabContent>
                             </div>
                         </div>

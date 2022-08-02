@@ -387,6 +387,21 @@ const utilis = (state = utilis_initialState, action) => {
 
   switch (type) {
     case action_type/* GET_CARTS */.Rp:
+      // const getCart = async () => {
+      //     console.log(payload.token);
+      //     const requestOptions = {
+      //         method: "GET",
+      //         headers: {
+      //             token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOiJhZG1pbiIsImlhdCI6MTY1ODg1NDI3MCwiZXhwIjoxNjU4OTQwNjcwfQ.n0gGhhZUEB2KuN30jgw3P-rKg5AnGRmNBye5W61RhTA`,
+      //         },
+      //     };
+      //     await fetch("http://api.saadia.uz/api/carts", requestOptions)
+      //         .then((response) => response.json())
+      //         .then((data) => {
+      //             console.log("dispatch cart work", data);
+      //             return data?.data;
+      //         });
+      // };
       return utilis_objectSpread(utilis_objectSpread({}, state), {}, {
         carts: payload
       });
@@ -475,12 +490,15 @@ const store_initialState = {};
 const middleware = [(external_redux_thunk_default())];
 const store = (0,external_redux_namespaceObject.createStore)(reducer, store_initialState, (0,external_redux_devtools_extension_namespaceObject.composeWithDevTools)((0,external_redux_namespaceObject.applyMiddleware)(...middleware)));
 /* harmony default export */ const redux_store = (store);
+// EXTERNAL MODULE: ./apiContext/index.js
+var apiContext = __webpack_require__(1850);
 ;// CONCATENATED MODULE: ./pages/_app.js
 function _app_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _app_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { _app_ownKeys(Object(source), true).forEach(function (key) { _app_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { _app_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _app_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -511,29 +529,31 @@ function MyApp({
       new WOW.WOW().init();
     }, 2000);
   }, []);
-  return /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_redux_.Provider, {
-    store: redux_store,
-    children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)((head_default()), {
-      children: [/*#__PURE__*/jsx_runtime_.jsx("title", {
-        children: "Vue - Clean Minimal eCommerce Redux Template"
-      }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-        name: "description",
-        content: true
-      }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1"
-      }), /*#__PURE__*/jsx_runtime_.jsx("link", {
-        rel: "stylesheet",
-        href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
-        integrity: "sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==",
-        crossOrigin: "anonymous",
-        referrerpolicy: "no-referrer"
-      }), /*#__PURE__*/jsx_runtime_.jsx("link", {
-        rel: "shortcut icon",
-        type: "image/x-icon",
-        href: "/img/favicon.png"
-      })]
-    }), preloader ? /*#__PURE__*/jsx_runtime_.jsx(layouts_PreLoader, {}) : /*#__PURE__*/jsx_runtime_.jsx(layouts_ScrollTop, {}), /*#__PURE__*/jsx_runtime_.jsx(AllToaser, {}), /*#__PURE__*/jsx_runtime_.jsx(Component, _app_objectSpread({}, pageProps))]
+  return /*#__PURE__*/jsx_runtime_.jsx(apiContext/* APIContextProvider */.a, {
+    children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_redux_.Provider, {
+      store: redux_store,
+      children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)((head_default()), {
+        children: [/*#__PURE__*/jsx_runtime_.jsx("title", {
+          children: "Saadia online market"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          name: "description",
+          content: true
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1"
+        }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
+          integrity: "sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==",
+          crossOrigin: "anonymous",
+          referrerpolicy: "no-referrer"
+        }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+          rel: "shortcut icon",
+          type: "image/x-icon",
+          href: "/img/favicon.png"
+        })]
+      }), preloader ? /*#__PURE__*/jsx_runtime_.jsx(layouts_PreLoader, {}) : /*#__PURE__*/jsx_runtime_.jsx(layouts_ScrollTop, {}), /*#__PURE__*/jsx_runtime_.jsx(AllToaser, {}), /*#__PURE__*/jsx_runtime_.jsx(Component, _app_objectSpread({}, pageProps))]
+    })
   });
 }
 
@@ -576,7 +596,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [9337,3971], () => (__webpack_exec__(6788)));
+var __webpack_exports__ = __webpack_require__.X(0, [7595,3971], () => (__webpack_exec__(6788)));
 module.exports = __webpack_exports__;
 
 })();

@@ -235,14 +235,14 @@ const MultipleRowsSlider = ({
     slidesToScroll: 1,
     prevArrow: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx(PrevArrow, {}),
     nextArrow: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx(NextArrow, {}),
-    rows: 1,
+    rows: 2,
     responsive: [{
       breakpoint: 700,
       settings: {
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows: false,
-        rows: 1
+        rows: 2
       }
     }, {
       breakpoint: 990,
@@ -325,7 +325,13 @@ const filterBlog = (key, arr) => {
   var sorted = isArr ? key.map(function (value) {
     return value.toLowerCase();
   }).sort() : [key.toLowerCase()];
-  return arr && arr.filter(arr => arr.categorie.find(e => sorted.join(",").toLowerCase().includes(e.toLowerCase())));
+  console.log(arr);
+  return true; // arr &&
+  // arr.filter((arr) =>
+  //     arr.category_name.find((e) =>
+  //         sorted.join(",").toLowerCase().includes(e.toLowerCase())
+  //     )
+  // )
 };
 
 /***/ })

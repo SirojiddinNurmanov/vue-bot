@@ -6,13 +6,15 @@ export const getProductByFilter = (data, filters) => {
     for (const key in filters) {
         if (key !== "price") {
             if (key === "search") {
-                filteredList =
-                    filteredList &&
-                    filteredList.filter((data) =>
-                        data.name
-                            .toLowerCase()
-                            .includes(filters[key].toLowerCase())
-                    );
+                true;
+                // filteredList =
+                //     filteredList &&
+                //     filteredList.filter((data) =>
+                //         data.name
+                //             .toString()
+                //             .toLowerCase()
+                //             .includes(filters[key].toString().toLowerCase())
+                //     );
             } else {
                 if (key === "colors" || key === "category" || key === "tags") {
                     filteredList = filterInArray(
@@ -64,23 +66,14 @@ function filterInArray(filteredList, value, key) {
 }
 
 export const simpleProductFilter = (key, arr) => {
-    let isArr = typeof key !== "string" ? true : false;
-    var sorted = isArr
-        ? key &&
-          key
-              .map(function (value) {
-                  return value.toLowerCase();
-              })
-              .sort()
-        : [key.toLowerCase()];
+    const sortedArr = [];
 
-    return true;
-    // arr &&
-    // arr.filter((arr) =>
-    //     arr.category_name.find((e) =>
-    //         e.toLowerCase().includes(sorted && sorted.join(","))
-    //     )
-    // )
+    arr.map((el) => {
+        if (el.category_name == key) {
+            sortedArr.push(el);
+        }
+    });
+    return sortedArr;
 };
 
 export const exitsProduct = (state, item) => {

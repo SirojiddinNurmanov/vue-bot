@@ -50,6 +50,7 @@ const Login = () => {
 
         if (data.status != 200) return alert(data.message);
         if (!alert("Success logged your account!"))
+        console.log(data);
             localStorage.setItem("token", data.token);
         return router.push("/");
     }

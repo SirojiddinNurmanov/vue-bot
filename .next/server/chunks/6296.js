@@ -4,15 +4,20 @@ exports.ids = [6296];
 exports.modules = {
 
 /***/ 2685:
-/***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
-// UNUSED EXPORTS: default
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "Z": () => (/* binding */ product_HomePageSingleProduct)
+});
 
 // EXTERNAL MODULE: external "react-bootstrap"
 var external_react_bootstrap_ = __webpack_require__(9226);
+// EXTERNAL MODULE: ./src/utils/filterProduct.js
+var filterProduct = __webpack_require__(3971);
 // EXTERNAL MODULE: ./src/components/slider/MultipleRowsSlider.js
-var slider_MultipleRowsSlider = __webpack_require__(409);
+var MultipleRowsSlider = __webpack_require__(409);
 // EXTERNAL MODULE: external "react-slick"
 var external_react_slick_ = __webpack_require__(9080);
 // EXTERNAL MODULE: external "react/jsx-runtime"
@@ -95,7 +100,7 @@ const SingleProductSlider = ({
 
 /* harmony default export */ const slider_SingleProductSlider = ((/* unused pure expression or super */ null && (SingleProductSlider)));
 // EXTERNAL MODULE: ./src/components/product/Product.js
-var product_Product = __webpack_require__(5374);
+var Product = __webpack_require__(5374);
 ;// CONCATENATED MODULE: ./src/components/product/HomePageSingleProduct.js
 
 
@@ -109,36 +114,34 @@ const HomePageSingleProduct = ({
   products,
   bot
 }) => {
-  return /*#__PURE__*/_jsx("section", {
-    className: "product-area box-90 pt-45 pb-40 slick-slider",
-    children: /*#__PURE__*/_jsx("div", {
+  return /*#__PURE__*/jsx_runtime_.jsx("section", {
+    className: "product-area box-90 pt-45 pb-30 slick-slider",
+    children: /*#__PURE__*/jsx_runtime_.jsx("div", {
       className: "container-fluid",
-      children: /*#__PURE__*/_jsxs(TabContainer, {
+      children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.TabContainer, {
         defaultActiveKey: "all2",
-        children: [/*#__PURE__*/_jsxs("div", {
+        children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
           className: "row",
-          children: [/*#__PURE__*/_jsx("div", {
+          children: [/*#__PURE__*/jsx_runtime_.jsx("div", {
             className: "col-xl-5 col-lg-12",
-            children: /*#__PURE__*/_jsxs("div", {
-              className: "area-title mb-50",
-              children: [/*#__PURE__*/_jsx("h2", {
-                children: "Best Sell Products"
-              }), /*#__PURE__*/_jsx("p", {
-                children: "Browse the huge variety of our products"
-              })]
+            children: /*#__PURE__*/jsx_runtime_.jsx("div", {
+              className: "area-title mb-20",
+              children: /*#__PURE__*/jsx_runtime_.jsx("h1", {
+                children: "Qaynoq mahsulotlar"
+              })
             })
-          }), /*#__PURE__*/_jsx("div", {
+          }), /*#__PURE__*/jsx_runtime_.jsx("div", {
             className: "col-xl-7 col-lg-12",
-            children: /*#__PURE__*/_jsx("div", {
-              className: "product-tab mb-40",
-              children: /*#__PURE__*/_jsxs(Nav, {
+            children: /*#__PURE__*/jsx_runtime_.jsx("div", {
+              className: "product-tab mb-10",
+              children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.Nav, {
                 as: "ul",
                 className: "nav product-nav  justify-content-xl-end",
                 id: "myTab1",
                 role: "tablist",
-                children: [/*#__PURE__*/_jsx(Nav.Item, {
+                children: [/*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.Nav.Item, {
                   as: "li",
-                  children: /*#__PURE__*/_jsx(Nav.Link, {
+                  children: /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.Nav.Link, {
                     as: "a",
                     href: "#",
                     className: "nav-link",
@@ -149,11 +152,11 @@ const HomePageSingleProduct = ({
                     role: "tab",
                     "aria-controls": "home",
                     "aria-selected": "true",
-                    children: "all"
+                    children: "Barchasi"
                   })
-                }), /*#__PURE__*/_jsx(Nav.Item, {
+                }), /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.Nav.Item, {
                   as: "li",
-                  children: /*#__PURE__*/_jsx(Nav.Link, {
+                  children: /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.Nav.Link, {
                     as: "a",
                     href: "#",
                     className: "nav-link",
@@ -164,11 +167,11 @@ const HomePageSingleProduct = ({
                     role: "tab",
                     "aria-controls": "profile",
                     "aria-selected": "false",
-                    children: "furniture"
+                    children: "Smartfonlar"
                   })
-                }), /*#__PURE__*/_jsx(Nav.Item, {
+                }), /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.Nav.Item, {
                   as: "li",
-                  children: /*#__PURE__*/_jsx(Nav.Link, {
+                  children: /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.Nav.Link, {
                     as: "a",
                     href: "#",
                     className: "nav-link",
@@ -179,11 +182,11 @@ const HomePageSingleProduct = ({
                     role: "tab",
                     "aria-controls": "contact",
                     "aria-selected": "false",
-                    children: "Man cloth"
+                    children: "Aksesuarlar"
                   })
-                }), /*#__PURE__*/_jsx(Nav.Item, {
+                }), /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.Nav.Item, {
                   as: "li",
-                  children: /*#__PURE__*/_jsx(Nav.Link, {
+                  children: /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.Nav.Link, {
                     as: "a",
                     href: "#",
                     onClick: e => e.preventDefault(),
@@ -194,52 +197,52 @@ const HomePageSingleProduct = ({
                     role: "tab",
                     "aria-controls": "contact",
                     "aria-selected": "false",
-                    children: "woman cloth"
+                    children: "tikuv mashinalari"
                   })
                 })]
               })
             })
           })]
-        }), /*#__PURE__*/_jsx("div", {
+        }), /*#__PURE__*/jsx_runtime_.jsx("div", {
           className: "row",
-          children: /*#__PURE__*/_jsx("div", {
+          children: /*#__PURE__*/jsx_runtime_.jsx("div", {
             className: "col-xl-12",
-            children: /*#__PURE__*/_jsx("div", {
+            children: /*#__PURE__*/jsx_runtime_.jsx("div", {
               className: "product-tab-content",
-              children: /*#__PURE__*/_jsxs(TabContent, {
+              children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_bootstrap_.TabContent, {
                 className: "tab-content",
                 id: "myTabContent",
-                children: [/*#__PURE__*/_jsx(TabPane, {
+                children: [/*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.TabPane, {
                   eventKey: "all2",
-                  children: /*#__PURE__*/_jsx("div", {
+                  children: /*#__PURE__*/jsx_runtime_.jsx("div", {
                     className: "product-slider owl-carousel",
-                    children: /*#__PURE__*/_jsx(MultipleRowsSlider, {
-                      children: products && products.map(product => /*#__PURE__*/_jsx(Product, {
+                    children: /*#__PURE__*/jsx_runtime_.jsx(MultipleRowsSlider/* default */.Z, {
+                      children: products && products.map(product => /*#__PURE__*/jsx_runtime_.jsx(Product/* default */.Z, {
                         product: product
                       }, product.product_id))
                     })
                   })
-                }), /*#__PURE__*/_jsx(TabPane, {
+                }), /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.TabPane, {
                   eventKey: "furniture2",
-                  children: /*#__PURE__*/_jsx("div", {
+                  children: /*#__PURE__*/jsx_runtime_.jsx("div", {
                     className: "product-slider owl-carousel ",
-                    children: /*#__PURE__*/_jsx(MultipleRowsSlider, {
-                      children: products && simpleProductFilter("furniture", products).map(product => /*#__PURE__*/_jsx(Product, {
+                    children: /*#__PURE__*/jsx_runtime_.jsx(MultipleRowsSlider/* default */.Z, {
+                      children: products && (0,filterProduct/* simpleProductFilter */.rK)("furniture", products).map(product => /*#__PURE__*/jsx_runtime_.jsx(Product/* default */.Z, {
                         product: product
                       }, product.product_id))
                     })
                   })
-                }), /*#__PURE__*/_jsx(TabPane, {
+                }), /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.TabPane, {
                   eventKey: "gent2",
-                  children: /*#__PURE__*/_jsx(MultipleRowsSlider, {
-                    children: products && simpleProductFilter("gent", products).map(product => /*#__PURE__*/_jsx(Product, {
+                  children: /*#__PURE__*/jsx_runtime_.jsx(MultipleRowsSlider/* default */.Z, {
+                    children: products && (0,filterProduct/* simpleProductFilter */.rK)("gent", products).map(product => /*#__PURE__*/jsx_runtime_.jsx(Product/* default */.Z, {
                       product: product
                     }, product.product_id))
                   })
-                }), /*#__PURE__*/_jsx(TabPane, {
+                }), /*#__PURE__*/jsx_runtime_.jsx(external_react_bootstrap_.TabPane, {
                   eventKey: "ladies2",
-                  children: /*#__PURE__*/_jsx(MultipleRowsSlider, {
-                    children: products && simpleProductFilter("ladies", products).map(product => /*#__PURE__*/_jsx(Product, {
+                  children: /*#__PURE__*/jsx_runtime_.jsx(MultipleRowsSlider/* default */.Z, {
+                    children: products && (0,filterProduct/* simpleProductFilter */.rK)("ladies", products).map(product => /*#__PURE__*/jsx_runtime_.jsx(Product/* default */.Z, {
                       product: product
                     }, product.product_id))
                   })
@@ -253,7 +256,7 @@ const HomePageSingleProduct = ({
   });
 };
 
-/* harmony default export */ const product_HomePageSingleProduct = ((/* unused pure expression or super */ null && (HomePageSingleProduct)));
+/* harmony default export */ const product_HomePageSingleProduct = (HomePageSingleProduct);
 
 /***/ }),
 

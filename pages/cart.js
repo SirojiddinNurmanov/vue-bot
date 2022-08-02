@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useState } from "react";
 import { connect, useSelector } from "react-redux";
 import Layout from "../src/layouts/Layout";
 import PageTitle from "../src/layouts/PageTitle";
@@ -10,30 +10,44 @@ import {
     removeCart,
 } from "../src/redux/action/utilis";
 import { totalPrice } from "../src/utils/utils";
+import { useCarts } from "../apiContext";
+import { useEffect } from "react";
 
-const Cart = ({ removeCart, addToCart, decreaseCart }) => {
-    const carts = useSelector((state) => state.utilis.carts);
-    const [cartValue, setCartValue] = useState(0);
-
-    const [addCart, setaddCart] = useState(false);
-
-    const onClickCart = (e, cart) => {
-        e.preventDefault();
-        addToCart(cart);
-        setaddCart(true);
-        toast.success("Add item in Cart.");
+const Cart = () => {
+    const { carts, getAllCarts } = useCarts();
+    const [cart, setCart] = useState([]);
+    const deleteCart = async (cart_id) => {
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJ1c2VyX3JvbGUiOiJ1c2VyIiwiaWF0IjoxNjU5NDI3ODg1LCJleHAiOjE2NTk1MTQyODV9.XV2tQwBFkaJ5cJAe_-sndTAo3Ab_ez-VdqnZIpmUy6o`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                cart_id,
+            }),
+        };
+        await fetch("http://api.saadia.uz/api/carts", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("objec t x");
+                getAllCarts();
+                console.log("data", data);
+                console.log("deleted cart", cart);
+            });
     };
-    const onClickRemoveCart = (e, cart) => {
-        e.preventDefault();
-        decreaseCart(cart);
-        setaddCart(true);
-        toast.error("Remove item from Cart.");
+    const [qty, setQty] = useState(0);
+    const [qty1, setQty1] = useState(0);
+
+    const onClickPlus = (item) => {
+        let num = +item.cart_quantity;
+        item.cart_quantity = num + 1;
+        console.log(item.cart_quantity);
     };
+
     return (
         <Layout sticky footerBg container textCenter>
             <main>
-                {/* <PageTitle active="Cart" pageHeading="Shoping Cart" /> */}
-
                 {carts && carts.length > 0 ? (
                     <section className="cart-area pt-100 pb-100">
                         <div className="container">
@@ -41,28 +55,6 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                 <div className="col-12">
                                     <form action="#">
                                         <div className="table-content table-responsive">
-                                            {/* <thead>
-                                                    <tr>
-                                                        <th className="product-thumbnail">
-                                                            Images
-                                                        </th>
-                                                        <th className="cart-product-name">
-                                                            Product
-                                                        </th>
-                                                        <th className="product-price">
-                                                            Unit Price
-                                                        </th>
-                                                        <th className="product-quantity">
-                                                            Quantity
-                                                        </th>
-                                                        <th className="product-subtotal">
-                                                            Total
-                                                        </th>
-                                                        <th className="product-remove">
-                                                            Remove
-                                                        </th>
-                                                    </tr>
-                                                </thead> */}
                                             <div>
                                                 {carts &&
                                                     carts.map((cart) => (
@@ -74,7 +66,8 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                                                 <a href="#">
                                                                     <img
                                                                         src={
-                                                                            cart.img1
+                                                                            cart
+                                                                                .product_images[0]
                                                                         }
                                                                         alt="cart"
                                                                     />
@@ -84,17 +77,14 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                                                 <div className="product-name">
                                                                     <a href="#">
                                                                         {
-                                                                            cart.name
+                                                                            cart.product_name
                                                                         }
                                                                     </a>
                                                                 </div>
                                                                 <div className="product-price">
                                                                     <span className="amount">
-                                                                        $
                                                                         {Number(
-                                                                            cart.mainPrice
-                                                                        ).toFixed(
-                                                                            2
+                                                                            cart.product_price
                                                                         )}
                                                                     </span>
                                                                 </div>
@@ -107,34 +97,32 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                                                         /> */}
                                                                         <p>
                                                                             {
-                                                                                cart.qty
+                                                                                cart.cart_quantity
                                                                             }
                                                                         </p>
                                                                         <div
                                                                             className="dec qtybutton"
                                                                             onClick={(
                                                                                 e
-                                                                            ) =>
-                                                                                cart.qty !==
+                                                                            ) => {
+                                                                                cart.cart_quantity !==
                                                                                     1 &&
-                                                                                onClickRemoveCart(
-                                                                                    e,
-                                                                                    cart
-                                                                                )
-                                                                            }
+                                                                                    cart.cart_quantity--;
+                                                                                setQty1(
+                                                                                    cart.cart_quantity
+                                                                                );
+                                                                            }}
                                                                         >
                                                                             -
                                                                         </div>
                                                                         <div
                                                                             className="inc qtybutton"
-                                                                            onClick={(
-                                                                                e
-                                                                            ) =>
-                                                                                onClickCart(
-                                                                                    e,
-                                                                                    cart
-                                                                                )
-                                                                            }
+                                                                            onClick={() => {
+                                                                                cart.cart_quantity++;
+                                                                                setQty(
+                                                                                    cart.cart_quantity
+                                                                                );
+                                                                            }}
                                                                         >
                                                                             +
                                                                         </div>
@@ -142,11 +130,9 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                                                 </div>
                                                                 <div className="product-subtotal">
                                                                     <span className="amount">
-                                                                        $
                                                                         {Number(
-                                                                            cart.totalPrice
-                                                                        ).toFixed(
-                                                                            2
+                                                                            cart.product_price *
+                                                                                cart.cart_quantity
                                                                         )}
                                                                     </span>
                                                                 </div>
@@ -154,19 +140,16 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                                             <div className="col-2 product-remove">
                                                                 <a
                                                                     href="#"
-                                                                    onClick={(
-                                                                        e
-                                                                    ) => {
-                                                                        removeCart(
-                                                                            cart.id
+                                                                    onClick={() => {
+                                                                        deleteCart(
+                                                                            cart &&
+                                                                                cart.cart_id
                                                                         );
-                                                                        setaddCart(
-                                                                            true
-                                                                        );
+
                                                                         toast.error(
                                                                             "Remove Item from cart."
                                                                         );
-                                                                        e.preventDefault();
+                                                                        // e.preventDefault();
                                                                     }}
                                                                 >
                                                                     <i className="fa fa-trash"></i>
@@ -176,44 +159,7 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                                     ))}
                                             </div>
                                         </div>
-                                        {/* <div className="row">
-                                            <div className="col-12">
-                                                <div className="coupon-all">
-                                                    <div className="coupon">
-                                                        <form
-                                                            onSubmit={(e) =>
-                                                                e.preventDefault()
-                                                            }
-                                                        >
-                                                            <input
-                                                                id="coupon_code"
-                                                                className="input-text"
-                                                                name="coupon_code"
-                                                                placeholder="Coupon code"
-                                                                type="text"
-                                                            />
-                                                            <button
-                                                                className="btn theme-btn-2"
-                                                                name="apply_coupon"
-                                                                type="submit"
-                                                                onClick={(e) =>
-                                                                    e.preventDefault()
-                                                                }
-                                                            >
-                                                                Apply coupon
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                    <div className="coupon2">
-                                                        <Link href="/checkout">
-                                                            <a className="btn theme-btn">
-                                                                Submit
-                                                            </a>
-                                                        </Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
+
                                         <div className="row">
                                             <div className="col-md-5 ml-auto">
                                                 <div className="cart-page-total">
@@ -222,7 +168,6 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                                         <li>
                                                             Subtotal{" "}
                                                             <span>
-                                                                $
                                                                 {totalPrice(
                                                                     carts
                                                                 )}
@@ -231,14 +176,18 @@ const Cart = ({ removeCart, addToCart, decreaseCart }) => {
                                                         <li>
                                                             Total{" "}
                                                             <span>
-                                                                $
                                                                 {totalPrice(
                                                                     carts
                                                                 )}
                                                             </span>
                                                         </li>
                                                     </ul>
-                                                    <Link href="/checkout">
+                                                    <Link
+                                                        href={{
+                                                            pathname:
+                                                                "/checkout",
+                                                        }}
+                                                    >
                                                         <a className="btn theme-btn">
                                                             Proceed to checkout
                                                         </a>

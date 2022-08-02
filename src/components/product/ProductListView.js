@@ -6,7 +6,7 @@ import { addToCart, addWishlist } from "../../redux/action/utilis";
 import ProductModal from "./ProductModal";
 import Image from "next/dist/client/image";
 const ProductListView = ({ product, col5, addToCart, addWishlist }) => {
-    const wishlist = useSelector((state) => state.utilis.wishlist);
+    // const wishlist = useSelector((state) => state.utilis.wishlist);
     const [quickView, setQuickView] = useState(false);
     const [addCart, setaddCart] = useState(false);
     const [addWishlist_, setAddWishlist_] = useState(false);

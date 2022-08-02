@@ -68,8 +68,7 @@ export const totalPrice = (items) => {
     return (
         items &&
         items
-            .map((item) => item.totalPrice)
+            .map((item) => item.product_price * item.cart_quantity)
             .reduce((prev, next) => prev + next, 0)
-            .toFixed(2)
     );
 };

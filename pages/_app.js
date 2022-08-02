@@ -6,6 +6,7 @@ import PreLoader from "../src/layouts/PreLoader";
 import ScrollTop from "../src/layouts/ScrollTop";
 import store from "../src/redux/store";
 import "../style/main.css";
+import { APIContextProvider } from "../apiContext";
 function MyApp({ Component, pageProps }) {
     const [preloader, setPreloader] = useState(true);
     useEffect(() => {
@@ -20,34 +21,37 @@ function MyApp({ Component, pageProps }) {
             new WOW.WOW().init();
         }, 2000);
     }, []);
-    return (
-        <Provider store={store}>
-            <Head>
-                <title>Vue - Clean Minimal eCommerce Redux Template</title>
-                <meta name="description" content />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1"
-                />
-                {/* <link rel="manifest" href="site.webmanifest" /> */}
-                <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-                    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-                    crossOrigin="anonymous"
-                    referrerpolicy="no-referrer"
-                />
 
-                <link
-                    rel="shortcut icon"
-                    type="image/x-icon"
-                    href="/img/favicon.png"
-                />
-            </Head>
-            {preloader ? <PreLoader /> : <ScrollTop />}
-            <AllToaster />
-            <Component {...pageProps} />
-        </Provider>
+    return (
+        <APIContextProvider>
+            <Provider store={store}>
+                <Head>
+                    <title>Saadia online market</title>
+                    <meta name="description" content />
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1"
+                    />
+                    {/* <link rel="manifest" href="site.webmanifest" /> */}
+                    <link
+                        rel="stylesheet"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+                        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+                        crossOrigin="anonymous"
+                        referrerpolicy="no-referrer"
+                    />
+
+                    <link
+                        rel="shortcut icon"
+                        type="image/x-icon"
+                        href="/img/favicon.png"
+                    />
+                </Head>
+                {preloader ? <PreLoader /> : <ScrollTop />}
+                <AllToaster />
+                <Component {...pageProps} />
+            </Provider>
+        </APIContextProvider>
     );
 }
 

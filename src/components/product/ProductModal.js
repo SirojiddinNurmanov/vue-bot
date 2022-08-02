@@ -197,12 +197,15 @@ const ProductModal = ({
                                     <div className="product-details-action d-flex">
                                         <div className="product-quantity">
                                             <div className="cart-plus-minus">
-                                                <p>{cart ? cart.qty : 1}</p>
+                                                <p>
+                                                    cart.qty
+                                                    {/* {cart ? cart.qty : 1} */}
+                                                </p>
                                                 <div
                                                     className="dec qtybutton"
                                                     onClick={() => {
                                                         cart &&
-                                                            cart.qty !== 1 &&
+                                                            // cart.qty !== 1 &&
                                                             decreaseCart(cart);
                                                     }}
                                                 >
